@@ -714,10 +714,10 @@ export default function App() {
                     <div className="border-t border-gray-700 pt-6">
                         <div className="flex flex-col items-center gap-3">
                             <p className="text-xs text-gray-400 text-center">
-                                Elektoria Elektrotechniek is een handelsnaam van Elektoria Group B.V.
+                                Elektoria Elektrotechniek is een handelsnaam van Voltaa Group B.V.
                             </p>
                             <p className="text-sm text-gray-400 text-center">
-                                © {new Date().getFullYear()} Elektoria Group B.V. · KvK: 97285862 · BTW: NL867985562B01
+                                © {new Date().getFullYear()} Voltaa Group B.V. · KvK: 97285862 · BTW: NL867985562B01
                                 · Alle rechten voorbehouden
                             </p>
                         </div>
