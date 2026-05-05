@@ -1,0 +1,13 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Account for sticky header when scrolling to anchors */
+section[id] {
+  scroll-margin-top: 4rem;
+}

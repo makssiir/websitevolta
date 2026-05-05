@@ -1,0 +1,20 @@
+{
+  "name": "Elektoria Elektrotechniek",
+  "short_name": "Elektoria",
+  "description": "Elektricien in Veenendaal en omgeving",
+  "lang": "nl-NL",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
+
