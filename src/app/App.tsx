@@ -357,7 +357,7 @@ export default function App() {
                                 <div
                                     className="w-24 h-24 rounded-full border-4 border-blue-600 shadow-lg overflow-hidden mb-2">
                                     <img
-                                        src="public/photo.jpeg"
+                                        src="/photo.jpeg"
                                         alt="Portret van Oleksandr Volkov, eigenaar van Elektoria Elektrotechniek"
                                         className="w-full h-full object-cover"
                                         width={96}
