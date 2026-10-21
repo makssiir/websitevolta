@@ -1,0 +1,13 @@
+{
+  "vatRate": 0.21,
+  "businessHourly": 58,
+  "privateHourly": 62.5,
+  "privateMinimumHours": 2,
+  "privateShortVisitMaxKm": 55,
+  "dayHours": 8,
+  "travelZones": [
+    { "label": "Tot en met 25 km", "maxKm": 25, "fee": 35 },
+    { "label": "Meer dan 25 tot en met 55 km", "maxKm": 55, "fee": 55 },
+    { "label": "Meer dan 55 tot en met 100 km", "maxKm": 100, "fee": 95 }
+  ]
+}

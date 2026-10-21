@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import { readFile, stat } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
+import { parseGlobalHeaders, parseRedirects } from './serve.mjs';
+
+const root = fileURLToPath(new URL('.', import.meta.url));
+const config = JSON.parse(await readFile(resolve(root, 'vercel.json'), 'utf8'));
+assert.equal(config.framework, null, 'Use the static framework preset');
+assert.equal(config.outputDirectory, 'dist', 'Vercel must publish the generated website, not public/');
+assert.equal(config.buildCommand, 'npm run build && npm run verify');
+assert.equal(config.cleanUrls, true);
+assert.equal(config.trailingSlash, false);
+assert(!config.rewrites, 'Do not hide missing pages behind a homepage fallback');
+assert((await stat(resolve(root, config.outputDirectory, 'index.html'))).isFile());
+const globalHeaders = Object.fromEntries(config.headers.find(rule => rule.source === '/(.*)').headers.map(({ key, value }) => [key, value]));
+assert.deepEqual(globalHeaders, parseGlobalHeaders(await readFile(resolve(root, 'dist/_headers'), 'utf8')), 'Security headers must match the Cloudflare configuration');
+const expectedRedirects = parseRedirects(await readFile(resolve(root, 'dist/_redirects'), 'utf8')).map(rule => ({ source: rule.from.replace('*', ':path*'), destination: rule.to, statusCode: rule.status }));
+assert.deepEqual(config.redirects, expectedRedirects, 'Vercel redirects must preserve destinations, order and status codes');
+console.log('PASS: Vercel output directory, static routes, security headers and redirect parity.');

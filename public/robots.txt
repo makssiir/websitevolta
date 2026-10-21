@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Host: https://www.elektoria.nl
-Sitemap: https://www.elektoria.nl/sitemap.xml
-

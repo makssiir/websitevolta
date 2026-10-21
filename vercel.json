@@ -1,0 +1,236 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build && npm run verify",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; frame-src https://www.google.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/en/business",
+      "destination": "/zakelijk",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/services",
+      "destination": "/diensten",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/services/:path*",
+      "destination": "/diensten",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/about",
+      "destination": "/over-ons",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/contact",
+      "destination": "/contact",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/privacy",
+      "destination": "/privacy",
+      "statusCode": 302
+    },
+    {
+      "source": "/en",
+      "destination": "/",
+      "statusCode": 302
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/",
+      "statusCode": 302
+    },
+    {
+      "source": "/uk/business",
+      "destination": "/zakelijk",
+      "statusCode": 302
+    },
+    {
+      "source": "/uk/services",
+      "destination": "/diensten",
+      "statusCode": 302
+    },
+    {
+      "source": "/uk/services/:path*",
+      "destination": "/diensten",
+      "statusCode": 302
+    },
+    {
+      "source": "/uk/about",
+      "destination": "/over-ons",
+      "statusCode": 302
+    },
+    {
+      "source": "/uk/contact",
+      "destination": "/contact",
+      "statusCode": 302
+    },
+    {
+      "source": "/uk/privacy",
+      "destination": "/privacy",
+      "statusCode": 302
+    },
+    {
+      "source": "/uk",
+      "destination": "/",
+      "statusCode": 302
+    },
+    {
+      "source": "/uk/:path*",
+      "destination": "/",
+      "statusCode": 302
+    },
+    {
+      "source": "/ru/business",
+      "destination": "/zakelijk",
+      "statusCode": 302
+    },
+    {
+      "source": "/ru/services",
+      "destination": "/diensten",
+      "statusCode": 302
+    },
+    {
+      "source": "/ru/services/:path*",
+      "destination": "/diensten",
+      "statusCode": 302
+    },
+    {
+      "source": "/ru/about",
+      "destination": "/over-ons",
+      "statusCode": 302
+    },
+    {
+      "source": "/ru/contact",
+      "destination": "/contact",
+      "statusCode": 302
+    },
+    {
+      "source": "/ru/privacy",
+      "destination": "/privacy",
+      "statusCode": 302
+    },
+    {
+      "source": "/ru",
+      "destination": "/",
+      "statusCode": 302
+    },
+    {
+      "source": "/ru/:path*",
+      "destination": "/",
+      "statusCode": 302
+    },
+    {
+      "source": "/zakelijk/aannemers-bouwbedrijven",
+      "destination": "/zakelijk",
+      "statusCode": 301
+    },
+    {
+      "source": "/zakelijk/renovatiebedrijven",
+      "destination": "/zakelijk",
+      "statusCode": 301
+    },
+    {
+      "source": "/zakelijk/keukenzaken-keukenleveranciers",
+      "destination": "/zakelijk",
+      "statusCode": 302
+    },
+    {
+      "source": "/tarieven",
+      "destination": "/zakelijk",
+      "statusCode": 302
+    },
+    {
+      "source": "/diensten/groepenkast-vervangen",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/laadpaal-installeren",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/extra-groep-perilex",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/verlichting-installeren",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/renovatie-elektra",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/stopcontacten-schakelaars",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/noodstroom-ups",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/advies-planning",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/elektra-ontwerp",
+      "destination": "/diensten",
+      "statusCode": 301
+    },
+    {
+      "source": "/diensten/keuken-elektra-voormontage",
+      "destination": "/diensten",
+      "statusCode": 301
+    }
+  ]
+}

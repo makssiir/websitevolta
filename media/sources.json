@@ -1,0 +1,121 @@
+[
+  {
+    "name": "maksym-usyk-natural-portrait-v3",
+    "source": "maksym-usyk-portrait-original.png",
+    "width": 640,
+    "height": 640,
+    "usage": "User-approved AI-assisted team portrait edit; extended framing and fine details are generated. Original retained. Prompt documented in maksym-usyk-natural-portrait-v3.txt."
+  },
+  {
+    "name": "cable-tray-renovation",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/9fe81f5e-0d3c-4153-8992-058fd54cf5f4 2.JPG",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 211182
+  },
+  {
+    "name": "kitchen-spots",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/Afbeelding van WhatsApp op 2025-02-13 om 13.36.11_204e829e.jpg",
+    "width": 1280,
+    "height": 960,
+    "bytes": 61138
+  },
+  {
+    "name": "pendant-lighting",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/CIMG2605.JPG",
+    "width": 1440,
+    "height": 1080,
+    "bytes": 33586
+  },
+  {
+    "name": "commercial-ceiling",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/CIMG2692.JPG",
+    "width": 1440,
+    "height": 1080,
+    "bytes": 53518
+  },
+  {
+    "name": "distribution-inspection",
+    "source": "../../photos-and-media/videos/Electrician_inspecting_distribut…_20260913203340.mp4",
+    "usage": "Illustrative video; not verified as Elektoria project footage",
+    "bytes": 253485
+  },
+  {
+    "name": "conduit-installation",
+    "source": "../../photos-and-media/videos/Electrician_installing_conduit_i…_20260913202057.mp4",
+    "usage": "Illustrative video; not verified as Elektoria project footage",
+    "bytes": 305807
+  },
+  {
+    "name": "opening-hospitality",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/Afbeelding van WhatsApp op 2025-02-17.jpg",
+    "width": 1246,
+    "height": 1675,
+    "bytes": 529470,
+    "usage": "Opening photo; original content preserved, no retouching or generated details"
+  },
+  {
+    "name": "opening-commercial-panel",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/cb3d5f17-c826-45ae-834f-b430adcd064d 2.JPG",
+    "width": 1350,
+    "height": 1800,
+    "bytes": 255646,
+    "usage": "Opening photo; original content preserved, no retouching or generated details"
+  },
+  {
+    "name": "opening-daylight-home",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/Afbeelding van WhatsApp op 2025-02-13 om 13.36.11_0680a59b.jpg",
+    "width": 1280,
+    "height": 960,
+    "bytes": 279550,
+    "usage": "Opening photo; original content preserved, no retouching or generated details"
+  },
+  {
+    "name": "opening-linear-lighting",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/CIMG2692.JPG",
+    "width": 1800,
+    "height": 1350,
+    "bytes": 154962,
+    "usage": "Opening photo; original content preserved, no retouching or generated details"
+  },
+  {
+    "name": "opening-modern-living",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/Afbeelding van WhatsApp op 2025-02-13 om 13.36.08_6d4dae8f.jpg",
+    "width": 1080,
+    "height": 719,
+    "bytes": 81824,
+    "usage": "Opening photo; original content preserved, no retouching or generated details"
+  },
+  {
+    "name": "opening-team-on-site",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/ffcdfc34-d77a-49cd-ba25-1b5c32d4bccb.JPG",
+    "width": 1350,
+    "height": 1800,
+    "bytes": 389690,
+    "usage": "Opening photo; original content preserved, no retouching or generated details"
+  },
+  {
+    "name": "opening-cove-lighting",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/CIMG2629.JPG",
+    "width": 1800,
+    "height": 1350,
+    "bytes": 144986,
+    "usage": "Opening photo; original content preserved, no retouching or generated details"
+  },
+  {
+    "name": "opening-modern-home",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/Afbeelding van WhatsApp op 2025-02-13 om 13.36.08_f4ce33c7.jpg",
+    "width": 960,
+    "height": 720,
+    "bytes": 75702,
+    "usage": "Homepage opening photo; original content preserved, no retouching, upscaling or generated details"
+  },
+  {
+    "name": "opening-project-lighting",
+    "source": "../../photos-and-media/elektoria-alle-werkfotos/CIMG2630.JPG",
+    "width": 1800,
+    "height": 1350,
+    "bytes": 106496,
+    "usage": "Homepage photo composition; original content preserved, no retouching or generated details"
+  }
+]
