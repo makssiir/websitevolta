@@ -1,0 +1,21 @@
+Social preview image correction, 2026-10-21
+Tool: built-in image_gen, text-localization edit mode.
+Final asset: public/assets/img/og-image.jpg, JPEG, 1200 x 630.
+The existing banner photograph and composition were retained as an edit target;
+this is not a newly documented project photograph. The user confirmed Elektoria
+should remain the customer-facing brand.
+
+Edit 1 prompt:
+Replace only the incorrect telephone number in the existing blue rectangle with
+the exact text "+31 6 1755 2558". Preserve the other text, photograph, crop,
+layout, overlay, typography and colors. No additional objects or decoration.
+
+Edit 2 prompt:
+Replace only the top heading "Voltaa Group B.V." with "Elektoria", matching its
+existing white bold typography, size, left edge and baseline. Preserve the exact
+phone number "+31 6 1755 2558", "Vakmanschap in Elektra" and
+"Meterkast · Verlichting · Elektra aanleg". Keep the existing photograph, crop,
+layout, overlay and blue rectangle unchanged as closely as possible.
+
+The selected output was resized and exported to JPEG for the website. The build
+publishes a content-hashed URL and a corrected legacy /assets/og-image.jpg alias.

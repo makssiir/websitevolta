@@ -2,7 +2,7 @@ const amountFormat = new Intl.NumberFormat('en-US', { useGrouping: false, minimu
 const money = value => Number(amountFormat.format(value));
 const euro = value => new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' }).format(value).replace(/\u00a0/g, ' ');
 
-export function createDiscovery({ business, pricing, pages, workPackages, serviceCatalogue, crewChoices }) {
+export function createDiscovery({ business, pricing, pages, workPackages, serviceCatalogue, crewChoices, socialImagePath = '/assets/og-image.jpg' }) {
   const origin = new URL(business.url);
   if (origin.protocol !== 'https:' || origin.pathname !== '/' || origin.search || origin.hash || origin.username || origin.password) {
     throw new Error('Discovery requires an HTTPS canonical origin without a path, query or credentials');
@@ -125,7 +125,7 @@ export function createDiscovery({ business, pricing, pages, workPackages, servic
       {
         '@type': 'Electrician', '@id': id('localbusiness'), name: business.name, legalName: business.legalName,
         parentOrganization: { '@id': id('organization') }, url: url('/'), address, areaServed: areas,
-        telephone: business.phone, email: business.email, image: url('/assets/og-image.jpg'), logo: url('/assets/favicon.svg'),
+        telephone: business.phone, email: business.email, image: url(socialImagePath), logo: url('/assets/favicon.svg'),
         hasMap: business.googleMapsUrl, sameAs: [business.googleMapsUrl],
         hasOfferCatalog: { '@id': catalogue['@id'] },
         contactPoint: {

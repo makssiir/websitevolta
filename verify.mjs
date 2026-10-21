@@ -646,6 +646,32 @@ export async function verify({ root = DEFAULT_DIST, origin = DEFAULT_ORIGIN } = 
       for (const service of services) assert(pages.get('/diensten').ids.has(new URL(service.url).hash.slice(1)), 'Schema service must link to visible work');
     });
   } catch (error) { failures.push(`AI discovery resources: ${error.message}`); }
+  try {
+    const image = await readFile(resolve(root, 'assets/og-image.jpg'));
+    const digest = createHash('sha256').update(image).digest('hex').slice(0, 12);
+    const imagePath = `/assets/og-image-${digest}.jpg`;
+    const versionedImage = await readFile(resolve(root, imagePath.slice(1)));
+    const profile = JSON.parse(await readFile(resolve(root, 'company.json'), 'utf8'));
+    check('Consistent sharing image and contact metadata', () => {
+      assert(image.equals(versionedImage), 'Legacy image URL must also serve the corrected image');
+      const imageUrl = `${origin}${imagePath}`;
+      for (const route of ROUTES) {
+        const page = pages.get(route);
+        for (const [key, value] of [
+          ['og:image', imageUrl], ['twitter:image', imageUrl],
+          ['og:image:alt', `${profile.name} - ${profile.contact.telephone}`],
+          ['twitter:image:alt', `${profile.name} - ${profile.contact.telephone}`],
+          ['og:image:width', '1200'], ['og:image:height', '630'],
+        ]) {
+          const meta = page.tags.filter(({ tag, attrs }) => tag === 'meta' && (attrs.property === key || attrs.name === key));
+          assert.equal(meta.length, 1, `Expected one ${key} on ${route}`);
+          assert.equal(meta[0].attrs.content, value, `Wrong ${key} on ${route}`);
+        }
+        const electrician = page.structuredData['@graph'].find(node => node['@type'] === 'Electrician');
+        assert.equal(electrician.image, imageUrl, 'Structured data must use the same versioned image');
+      }
+    });
+  } catch (error) { failures.push(`Sharing image: ${error.message}`); }
   if (!fileNames.has('404.html')) failures.push('Missing top-level 404.html required for static hosting');
 
   await verifyHttp(root, pages, failures);

@@ -12,6 +12,10 @@ const googleReviews = business.googleReviews;
 const reviewRating = new Intl.NumberFormat('nl-NL', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(googleReviews.rating);
 const reviewCheckedOn = new Intl.DateTimeFormat('nl-NL', { timeZone: 'UTC' }).format(new Date(`${googleReviews.checkedOn}T12:00:00Z`));
 const assetVersion = createHash('sha256').update(await readFile(join(root, 'styles.css'))).update(await readFile(join(root, 'site.js'))).digest('hex').slice(0, 12);
+const socialImage = await readFile(join(root, 'public/assets/img/og-image.jpg'));
+const socialImageName = `og-image-${createHash('sha256').update(socialImage).digest('hex').slice(0, 12)}.jpg`;
+const socialImagePath = `/assets/${socialImageName}`;
+const socialImageAlt = `${business.name} - ${business.phone}`;
 const pricing = JSON.parse(await readFile(join(root, 'pricing.json'), 'utf8'));
 const euro = (amount) => new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', minimumFractionDigits: Number.isInteger(amount) ? 0 : 2, maximumFractionDigits: 2 }).format(amount).replace(/\u00a0/g, ' ');
 const withVat = (amount) => amount * (1 + pricing.vatRate);
@@ -294,7 +298,7 @@ const pages = [
   },
 ];
 
-const discovery = createDiscovery({ business, pricing, pages, workPackages, serviceCatalogue, crewChoices });
+const discovery = createDiscovery({ business, pricing, pages, workPackages, serviceCatalogue, crewChoices, socialImagePath });
 
 function html(page, notFound = false) {
   const url = `${business.url}${page.path === '/' ? '' : page.path}`;
@@ -311,7 +315,7 @@ function html(page, notFound = false) {
   </div></footer>`;
   const structuredData = notFound ? '' : `<script type="application/ld+json">${JSON.stringify(discovery.schemaForPage(page)).replace(/</g, '\\u003c')}</script>`;
   return `<!doctype html>
-<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(page.title)}</title><meta name="description" content="${escape(page.description)}"><meta name="robots" content="${notFound ? 'noindex, follow' : 'index, follow, max-image-preview:large'}">${notFound ? '' : `<link rel="canonical" href="${escape(url)}">${discovery.headLinks}`}<meta name="theme-color" content="#2563eb"><meta property="og:type" content="website"><meta property="og:locale" content="nl_NL"><meta property="og:site_name" content="${escape(business.name)}"><meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta property="og:url" content="${escape(url)}"><meta property="og:image" content="${business.url}/assets/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Elektoria Elektrotechniek"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css?v=${assetVersion}"><script src="/assets/site.js?v=${assetVersion}" defer></script>${structuredData}</head>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(page.title)}</title><meta name="description" content="${escape(page.description)}"><meta name="robots" content="${notFound ? 'noindex, follow' : 'index, follow, max-image-preview:large'}">${notFound ? '' : `<link rel="canonical" href="${escape(url)}">${discovery.headLinks}`}<meta name="theme-color" content="#2563eb"><meta property="og:type" content="website"><meta property="og:locale" content="nl_NL"><meta property="og:site_name" content="${escape(business.name)}"><meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta property="og:url" content="${escape(url)}"><meta property="og:image" content="${business.url}${socialImagePath}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${escape(socialImageAlt)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${business.url}${socialImagePath}"><meta name="twitter:image:alt" content="${escape(socialImageAlt)}"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css?v=${assetVersion}"><script src="/assets/site.js?v=${assetVersion}" defer></script>${structuredData}</head>
 <body><a class="skip-link" href="#main">Naar de inhoud</a><header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Elektoria Elektrotechniek, home">${logo}</a><nav id="navigation" aria-label="Hoofdnavigatie">${navigation.map((item) => `<a class="nav-link" href="${item.path}"${item.path === page.path ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}<a class="nav-link" href="${priceHref}">Prijsafspraken</a><a class="nav-link nav-link--mobile-phone" href="${business.phoneHref}">${business.phone}</a></nav><div class="header-contact">${button('/contact', 'Contact', 'secondary header-contact-button')}${button(business.whatsapp, 'WhatsApp', 'primary header-whatsapp-button', 'message-circle')}</div><button class="menu-toggle" type="button" aria-label="Menu openen" title="Menu openen" aria-controls="navigation" aria-expanded="false">${icon('menu')}</button></div></header><main id="main">${page.content}</main><dialog class="photo-viewer" id="photo-viewer" aria-labelledby="photo-viewer-caption"><div class="photo-viewer-top"><p id="photo-viewer-caption" aria-live="polite"></p><button type="button" data-photo-close autofocus aria-label="Foto sluiten" title="Foto sluiten">${icon('x')}</button></div><div class="photo-viewer-frame"><img id="photo-viewer-image" alt=""></div><div class="photo-viewer-controls"><button type="button" data-photo-prev aria-label="Vorige foto" title="Vorige foto">${icon('arrow-left')}</button><span id="photo-viewer-count" aria-live="polite"></span><button type="button" data-photo-next aria-label="Volgende foto" title="Volgende foto">${icon('arrow-right')}</button></div></dialog>${footer}</body></html>`;
 }
 
@@ -332,7 +336,8 @@ const copyPhoto = async (file) => {
 selectedPhotos.add('media/maksym-usyk-natural-portrait-v3');
 for (const file of selectedPhotos) await copyPhoto(file);
 await cp(join(root, 'public/favicon.svg'), join(staging, 'assets/favicon.svg'));
-await cp(join(root, 'public/assets/img/og-image.jpg'), join(staging, 'assets/og-image.jpg'));
+await writeFile(join(staging, 'assets', socialImageName), socialImage);
+await writeFile(join(staging, 'assets/og-image.jpg'), socialImage);
 await cp(join(root, 'node_modules/lucide-static/LICENSE'), join(staging, 'assets/lucide-license.txt'));
 for (const page of pages) {
   const directory = page.path === '/' ? staging : join(staging, page.path.slice(1));
