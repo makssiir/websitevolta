@@ -12,8 +12,11 @@ export function createDiscovery({ business, pricing, pages, workPackages, servic
   const gross = amount => money(amount * (1 + pricing.vatRate));
   const areas = ['Veenendaal', 'Ede', 'Utrecht', 'Gelderland', 'Midden-Nederland'];
   const address = {
-    '@type': 'PostalAddress', streetAddress: business.street, postalCode: business.postalCode,
-    addressLocality: business.city, addressCountry: 'NL',
+    '@type': 'PostalAddress',
+    ...(business.street ? { streetAddress: business.street } : {}),
+    postalCode: business.postalCode,
+    addressLocality: business.city,
+    addressCountry: 'NL',
   };
   const contact = {
     preferredChannel: 'WhatsApp', whatsapp: business.whatsapp, email: business.email,
@@ -38,7 +41,7 @@ export function createDiscovery({ business, pricing, pages, workPackages, servic
     name: business.name,
     legalName: business.legalName,
     kvk: business.kvk,
-    address: { street: business.street, postalCode: business.postalCode, city: business.city, country: 'NL', visits: 'Alleen op afspraak' },
+    address: { ...(business.street ? { street: business.street } : {}), postalCode: business.postalCode, city: business.city, country: 'NL', visits: 'Alleen op afspraak' },
     siteLanguages: ['nl'],
     contact,
     googleMaps: business.googleMapsUrl,
@@ -128,6 +131,14 @@ export function createDiscovery({ business, pricing, pages, workPackages, servic
         telephone: business.phone, email: business.email, image: url(socialImagePath), logo: url('/assets/favicon.svg'),
         hasMap: business.googleMapsUrl, sameAs: [business.googleMapsUrl],
         hasOfferCatalog: { '@id': catalogue['@id'] },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '09:00',
+            closes: '17:00',
+          },
+        ],
         contactPoint: {
           '@type': 'ContactPoint', name: 'Maksym - klantcontact en projectplanning', contactType: 'projectaanvraag',
           url: business.whatsapp, telephone: business.phone, email: business.email, availableLanguage: contact.availableLanguages,
